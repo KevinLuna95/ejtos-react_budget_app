@@ -1,11 +1,31 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
-const Budget = () => {
+const Budget = (props) => {
+    const { dispatch } = useContext(AppContext);
     const { budget } = useContext(AppContext);
+    
+
+    const handleChangeBudget = (valueBudget) => {
+
+        dispatch({
+            type: 'SET_BUDGET',
+            payload: valueBudget,
+        });
+    };
+
+    
     return (
-        <div className='alert alert-secondary'>
-            <span>Budget: £{budget}</span>
-        </div>
+        <form className='alert alert-secondary'>
+            <span>Budget: £
+                <input
+                    type="number" 
+                    value={ budget }
+                    max="20000"
+                    step="10"
+                    onChange={(e) => {handleChangeBudget(e.target.value)}}
+                ></input>
+            </span>
+        </form>
     );
 };
 export default Budget;

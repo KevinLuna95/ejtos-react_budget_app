@@ -60,6 +60,11 @@ export const AppReducer = (state, action) => {
         case 'SET_BUDGET':
             action.type = "DONE";
             state.budget = action.payload;
+            
+            if (action.payload > 20000){
+                action.payload=20000
+                alert("the budget cannot exceed £20000")
+            }
 
             return {
                 ...state,
@@ -86,7 +91,12 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
     ],
-    currency: '£'
+    currency: [
+        {symbol: "$", name: "Dollar"},
+        {symbol: "£", name: "Pound"},
+        {symbol: "€", name: "Euro"},
+        {symbol: "₹", name: "Ruppee"},
+    ]
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state

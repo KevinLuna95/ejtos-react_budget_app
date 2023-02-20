@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = (props) => {
-    const { dispatch } = useContext(AppContext);
+    const { dispatch,currency } = useContext(AppContext);
     const { budget } = useContext(AppContext);
     
 
@@ -16,7 +16,7 @@ const Budget = (props) => {
     
     return (
         <form className='alert alert-secondary'>
-            <span>Budget: £
+            <span>Budget: {currency}
                 <input
                     type="number" 
                     value={ budget }
